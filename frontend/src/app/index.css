@@ -1,0 +1,19 @@
+:root {
+  --layout-width: 1440px;
+
+  --color-background: #F3FFFD;
+  --color-primary: #00CCA6;
+  --color-text: #252B42;
+  --font: "Montserrat", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font);
+}
