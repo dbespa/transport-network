@@ -1,0 +1,44 @@
+{% extends 'traffic/layout.html' %}
+{% load static %}
+
+{% block title %}Текущая загруженность{% endblock %}
+
+{% block content %}
+<h1><img src="{% static 'traffic/icons/traffic-lights-traffic-light-svgrepo-com.svg' %}" alt="Traffic lights Icon" width="24" height="24"> Загруженность дорог</h1>
+<a href="{% url 'home' %}" class="btn btn-secondary mb-3">На главную</a>
+{% if traffics %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Дорога</th>
+                    <th>Загруженность</th>
+                    <th>Коэффициент времени</th>
+                    <th>Обновлено</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for t in traffics %}
+                <tr>
+                    <td><a href="{% url 'traffic_detail' t.id %}">{{ t.road_segment }}</a></td>
+                    <td>
+                     <span class="badge" {% if t.congestion_type.name == 'Свободно' %} style="background-color: #28a745;"
+                        {% elif t.congestion_type.name == 'Затор' %} style="background-color: #ffc107; color: #000;"
+                        {% elif t.congestion_type.name == 'Пробка' %} style="background-color: #dc3545;"
+                        {% elif t.congestion_type.name == 'Дорога перекрыта' %} style="background-color: #6c757d;"
+                        {% else %} style="background-color: #808080;"
+                        {% endif %}>
+                            {{ t.congestion_type.name }}
+                        </span>
+                    </td>
+                    <td>{{ t.congestion_type.time_coefficient }}</td>
+                    <td>{{ t.last_updated|date:"d.m.Y H:i" }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info">Нет данных о загруженности</div>
+{% endif %}
+{% endblock %}

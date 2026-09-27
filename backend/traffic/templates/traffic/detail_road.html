@@ -1,0 +1,31 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}Отрезок пути{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h2>Дорога</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>Из:</strong> {{ road.point_a.name }}</p>
+        <p><strong>В:</strong> {{ road.point_b.name }}</p>
+        <p><strong>Расстояние:</strong> {{ road.distance_km }} км</p>
+        {% if road.traffic %}
+            <p><strong>Текущая загруженность:</strong>
+                <span class="badge
+                    {% if road.traffic.congestion_type.name == 'Свободно' %}bg-success
+                    {% elif road.traffic.congestion_type.name == 'Затор' %}bg-warning
+                    {% elif road.traffic.congestion_type.name == 'Пробка' %}bg-danger
+                    {% else %}bg-secondary
+                    {% endif %}">
+                    {{ road.traffic.congestion_type.name }}
+                </span>
+            </p>
+        {% endif %}
+        <a href="{% url 'road_update' road.id %}" class="btn btn-warning">Редактировать</a>
+        <a href="{% url 'road_delete' road.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'roads' %}" class="btn btn-secondary">Назад</a>
+    </div>
+</div>
+{% endblock %}

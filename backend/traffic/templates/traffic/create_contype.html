@@ -1,0 +1,31 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}
+Добавление типа загруженности
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-info text-white">
+        <h2>Тип загруженности</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Название</label>
+                {{ form.name }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Коэффициент времени</label>
+                {{ form.time_coefficient }}
+            </div>
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-success">Создать</button>
+            <a href="{% url 'contypes' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

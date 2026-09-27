@@ -1,0 +1,18 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}{{ contype.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-info text-white">
+        <h2>{{ contype.name }}</h2>
+    </div>
+    <div class="card-body">
+{#        <p><strong>Цвет:</strong> <span style="background: {{ contype.color }}; padding: 2px 8px; border-radius: 4px;">{{ contype.color }}</span></p>#}
+        <p><strong>Коэффициент времени:</strong> {{ contype.time_coefficient }}</p>
+        <a href="{% url 'contype_update' contype.id %}" class="btn btn-warning">Редактировать</a>
+        <a href="{% url 'contype_delete' contype.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'contypes' %}" class="btn btn-secondary">Назад</a>
+    </div>
+</div>
+{% endblock %}

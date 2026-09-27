@@ -1,0 +1,31 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}
+Редактировать загруженность
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-warning">
+        <h2>Изменить загруженность дороги</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Дорога</label>
+                {{ form.road_segment }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Тип загруженности</label>
+                {{ form.congestion_type }}
+            </div>
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Применить</button>
+            <a href="{% url 'traffic' %}" class="btn btn-secondary">Назад</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

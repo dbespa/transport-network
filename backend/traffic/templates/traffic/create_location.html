@@ -1,0 +1,33 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}
+Добавление пункта
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h2>Новый населённый пункт</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Название</label>
+                {{ form.name }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Широта</label>
+                {{ form.latitude }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Долгота</label>
+                {{ form.longitude }}
+            </div>
+            <span class="text-danger">{{ error }}</span><br>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+            <a href="{% url 'locations' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

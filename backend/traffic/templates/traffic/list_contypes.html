@@ -1,0 +1,26 @@
+{% extends 'traffic/layout.html' %}
+{% load static %}
+
+{% block title %}Типы загруженности{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h1><img src="{% static 'traffic/icons/gear-cogwheel-svgrepo-com.svg' %}" alt="Gear wheel Icon" width="24" height="24"> Типы загруженности</h1>
+    <a href="{% url 'contype_create' %}" class="btn btn-primary">+ Добавить тип</a>
+</div>
+<div class="row">
+    {% for ct in contypes %}
+    <div class="col-md-3">
+        <div class="card text-center mb-3" style="border-left: 5px solid {{ ct.color }};">
+            <div class="card-body">
+                <h5 class="card-title">{{ ct.name }}</h5>
+                <p class="card-text">Коэффициент: {{ ct.time_coefficient }}</p>
+                <a href="{% url 'contype_detail' ct.id %}" class="btn btn-sm btn-secondary">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-warning">Нет типов</div>
+    {% endfor %}
+</div>
+{% endblock %}

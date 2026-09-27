@@ -1,0 +1,18 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}{{ location.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2>{{ location.name }}</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>Широта:</strong> {{ location.latitude }}</p>
+        <p><strong>Долгота:</strong> {{ location.longitude }}</p>
+        <a href="{% url 'location_update' location.id %}" class="btn btn-warning">Редактировать</a>
+        <a href="{% url 'location_delete' location.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'locations' %}" class="btn btn-secondary">Назад</a>
+    </div>
+</div>
+{% endblock %}

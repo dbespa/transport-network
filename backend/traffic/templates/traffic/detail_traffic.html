@@ -1,0 +1,23 @@
+{% extends 'traffic/layout.html' %}
+
+{% block title %}Загруженность{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-warning">
+        <h2>Детали загруженности</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>Дорога:</strong> {{ traffic.road_segment }}</p>
+{#        <p><strong>Тип:</strong>#}
+{#            <span class="badge" style="background-color: {{ traffic.congestion_type.color }};">#}
+{#                {{ traffic.congestion_type.name }}#}
+{#            </span>#}
+{#        </p>#}
+        <p><strong>Коэффициент времени:</strong> {{ traffic.congestion_type.time_coefficient }}</p>
+        <p><strong>Последнее обновление:</strong> {{ traffic.last_updated|date:"d.m.Y H:i:s" }}</p>
+        <a href="{% url 'traffic_update' traffic.id %}" class="btn btn-warning">Редактировать</a>
+        <a href="{% url 'traffic' %}" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</div>
+{% endblock %}
