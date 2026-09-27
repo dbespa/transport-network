@@ -1,0 +1,30 @@
+.layout {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: var(--color-primary);
+    padding: 20px 0;
+}
+
+.headerWrapper {
+    max-width: var(--layout-width);
+    margin: 0 auto;
+}
+
+.main {
+    flex: 1;
+}
+
+.footer {
+    background-color: var(--color-text);
+    color: var(--color-background);
+    padding: 20px 0;
+}
+
+.footerWrapper {
+    max-width: var(--layout-width);
+    margin: 0 auto;
+}
